@@ -14,9 +14,10 @@ node {
                       
                         sh "git config user.email kiryanovsky@gmail.com"
                         sh "git config user.name KirillYanovsky"
-                      
+                        
+                        sh "git checkout main"
                         sh "cat deployment.yaml"
-                        sh "sed -i 's+dockersampath/packages.*+yankey/packages:${DOCKERTAG}+g' deployment.yaml"
+                        sh "sed -i 's+yankey/packages.*+yankey/packages:${DOCKERTAG}+g' deployment.yaml"
                         sh "cat deployment.yaml"
                         sh "git add ."
                         sh "git commit -m 'By Jenkins Job changemanifest: ${env.BUILD_NUMBER}'"
